@@ -1,5 +1,6 @@
 package hac.controllers;
 
+import hac.repo.Question;
 import hac.repo.User;
 import hac.repo.UserRepository;
 import jakarta.validation.Valid;
@@ -7,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("")
@@ -18,18 +16,40 @@ public class MainController {
 
     /* inject via its type the User repo bean - a singleton */
     @Autowired
-    private UserRepository repository;
+    private UserRepository repositoryUsers;
+    @Autowired
+    private UserRepository repositoryQuestion;
 
     @PostMapping("/adduser")
     public String addUser(@Valid User user, BindingResult result, Model model) {
         // validate the object and get the errors
-        System.out.println("hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+
         if (result.hasErrors()) {
             return "register";
         }
-        repository.save(user);
+        repositoryUsers.save(user);
         return "game";
     }
+    @PostMapping("admin/delete")
+    public String deleteUser(@RequestParam("id") long id, Model model) {
+
+        // we throw an exception if the user is not found
+        // since we don't catch the exception here, it will fall back on an error page (see below)
+        User user = repositoryUsers
+                .findById(id)
+                .orElseThrow(
+                        () -> new IllegalArgumentException("Invalid user Id:" + id)
+                );
+        repositoryUsers.delete(user);
+        model.addAttribute("users", repositoryUsers.findAll());
+        return "questions";
+    }
+    @PostMapping("admin/get-question")
+    public String getQuestion(Question question, Model model) {
+        model.addAttribute("question", repositoryQuestion.findAll());
+        return "questions";
+    }
+
     @GetMapping("/")
     public String index(Model model) {
         return "index";
@@ -46,7 +66,8 @@ public class MainController {
     }
 
     @GetMapping("/register")
-    public String register() {
+    public String register(User user, Model model) {
+        model.addAttribute("user",user);
         return "register";
     }
 }

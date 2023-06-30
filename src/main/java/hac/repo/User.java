@@ -22,7 +22,7 @@ public class User implements Serializable {
     @Email(message = "Email should be valid")
     private String email;
 
-    @Length(message = "The password needs to be 4-10 chars", min = 4, max = 10) @NotEmpty(message = "Password is mandatory")
+    @Length(message = "The password needs to be 4-10 chars", min = 4, max = 10)
     private String password;
 
 
