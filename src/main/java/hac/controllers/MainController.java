@@ -44,9 +44,10 @@ public class MainController {
         model.addAttribute("users", repositoryUsers.findAll());
         return "questions";
     }
-    @PostMapping("admin/get-question")
+    @GetMapping("admin/question")
     public String getQuestion(Question question, Model model) {
-        model.addAttribute("question", repositoryQuestion.findAll());
+        model.addAttribute("question", question);
+        model.addAttribute("questions", repositoryQuestion.findAll());
         return "questions";
     }
 

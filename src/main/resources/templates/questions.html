@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<div th:include="head :: head"></div>
-<body>
+<head>
+  <title>Your Page Title</title>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body style="background: black">
+
 <div class="container">
-  <div class="row">
-    <div th:switch="${question.size()}" class="col-md-6">
-      <h2 th:case="0">No Questions yet!</h2>
+
+  <div class="row justify-content-center">
+    <div th:switch="${questions.size()}" class="col-12">
+      <h2 th:case="0" class="text-danger mt-5" style="text-align: center">No Questions In DB!</h2>
       <div th:case="*">
-        <h2 class="my-5">Questions</h2>
+        <h2 class="my-5 text-white" >Questions</h2>
         <table class="table table-striped table-responsive-md">
           <thead>
           <tr>
-            <th>Email</th>
-            <th>Question</th>
-            <th>correctAnswer</th>
-            <th>wrongAnswers1</th>
-            <th>wrongAnswers2</th>
-            <th>wrongAnswers3</th>
+            <th class="text-white">Email</th>
+            <th class="text-white"> Question</th>
+            <th class="text-white">correctAnswer</th>
+            <th class="text-white">wrongAnswers1</th>
+            <th class="text-white">wrongAnswers2</th>
+            <th class="text-white">wrongAnswers3</th>
+            <th class="text-white"></th>
           </tr>
           </thead>
           <tbody>
           <tr th:each="question : ${questions}">
             <td th:text="${question.email}"></td>
             <td th:text="${question.question}"></td>
+            <td th:text="${question.correctAnswer}"></td>
             <td th:text="${question.wrongAnswers1}"></td>
             <td th:text="${question.wrongAnswers2}"></td>
             <td th:text="${question.wrongAnswers3}"></td>
-<!--            <td>-->
-<!--              <a th:href="@{/edit/{id}(id=${user.id})}" class="btn btn-primary">EDIT</a>-->
-<!--            </td>-->
             <td>
               <form action="#" th:action="@{/admin/delete}" th:object="${question}" method="post">
-                <input type="hidden" name="id" th:value="${id}">
+                <input type="hidden" name="id" th:value="${question.id}">
                 <input class="btn btn-primary" type="submit" value="DELETE" />
               </form>
             </td>
@@ -39,9 +44,71 @@
           </tbody>
         </table>
       </div>
-<!--      <p class="my-5"><a href="/signup" class="btn btn-primary">add</i></a></p>-->
     </div>
   </div>
+  <div class="row ">
+    <div class="col-12">
+      <form action="#" th:action="@{/adduser}" th:object="${question}" method="post">
+
+        <div class="row justify-content-center">
+          <div class="form-group col-5">
+            <label for="email" class="col-form-label text-white">Email</label>
+            <input type="text" th:fields="*{email}" class="form-control" id="email" placeholder="Email">
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+          </div>
+
+          <div class="form-group col-5">
+            <label for="question" class="col-form-label text-white">Question</label>
+            <input type="text" th:field="*{question}" class="form-control" id="question" placeholder="Name">
+            <span th:if="${#fields.hasErrors('question')}" th:errors="*{question}" class="text-danger"></span>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="form-group col-5">
+            <label for="correctAnswer" class="col-form-label text-white">Correct Answer</label>
+            <input type="text" th:field="*{correctAnswer}" class="form-control" id="correctAnswer" placeholder="correctAnswer">
+            <span th:if="${#fields.hasErrors('correctAnswer')}" th:errors="*{correctAnswer}" class="text-danger"></span>
+          </div>
+
+          <div class="form-group col-5 ">
+            <label for="wrongAnswers1" class="col-form-label text-white">Wrong Answers 1</label>
+            <input type="text" th:field="*{wrongAnswers1}" class="form-control" id="wrongAnswers1" placeholder="wrongAnswers1">
+            <span th:if="${#fields.hasErrors('wrongAnswers1')}" th:errors="*{wrongAnswers1}" class="text-danger"></span>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="form-group col-5">
+            <label for="wrongAnswers2" class="col-form-label text-white">Wrong Answers 2</label>
+            <input type="text" th:field="*{wrongAnswers2}" class="form-control" id="wrongAnswers2" placeholder="wrongAnswers2">
+            <span th:if="${#fields.hasErrors('wrongAnswers2')}" th:errors="*{wrongAnswers2}" class="text-danger"></span>
+          </div>
+
+          <div class="form-group col-5">
+            <label for="wrongAnswers3" class="col-form-label text-white">Wrong Answers 3</label>
+            <input type="text" th:field="*{wrongAnswers3}" class="form-control" id="wrongAnswers3" placeholder="wrongAnswers3">
+            <span th:if="${#fields.hasErrors('wrongAnswers3')}" th:errors="*{wrongAnswers3}" class="text-danger"></span>
+          </div>
+        </div>
+
+
+        <div class="row justify-content-center mt-3">
+          <input type="submit" class="btn btn-primary" value="Add Question">
+        </div>
+
+
+
+      </form>
+    </div>
+  </div>
+  </div>
+
+  <div class="row m-3">
+    <a href="/shared/game" class="btn btn-primary mt-4">Return to game page</a>
+  </div>
+
 </div>
+
 </body>
 </html>

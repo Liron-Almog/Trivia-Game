@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:include="head :: head"></div>
-    <body>
-        <h1>Login page</h1>
-        <p>Example administrator: admin / password</p>
-        <p>Example user: user / password</p>
-        <p>Example user and administrator: useradmin / password</p>
+    <body style="background: black">
 
-        <div th:if="${param.error}">
-            Invalid username and password.
-        </div>
-        <div th:if="${param.logout}">
-            You have been logged out.
-        </div>
-        <form th:action="@{/login}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
-        </form>
+    <div class="container mt-5">
 
-        <p><a href="/">Back to home page</a></p>
+        <div class="row justify-content-center">
+            <h1 class="mb-3 text-info" style="text-align: center; font-size: 400%;">Login</h1>
+            <div class="col-4">
+                <div class="text-danger" th:if="${param.error}">
+                    Invalid username or password.
+                </div>
+                <div class=" text-danger" th:if="${param.logout}">
+                    You have been logged out. </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <form th:action="@{/login}" method="post">
+                        <label class="text-white" for="username">User Name:</label>
+                        <input type="text" id="username" name="username" class="form-control" />
+                        <label class="text-white" for="password">Password:</label>
+                        <input type="password" id="password" name="password" class="form-control" />
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary">Sign In</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+            <a href="/"><button class="btn btn-primary mt-4">Back to home page</button></a>
+        </div>
+    </div>
     </body>
 </html>

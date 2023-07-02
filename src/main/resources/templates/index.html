@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:include="head :: head"></div>
-<body>
+<body style="background: black">
 
-<div class="container">
+<div class="container mt-5">
     <div class="row justify-content-center">
-    </div>
-    <div class="row">
-        <div class="d-grid gap-2 col-6 mx-auto">
-            <a href="/login" class="btn btn-outline-info btn-lg">LOGIN</a>
+        <h1 class="mb-5 text-info" style="text-align: center; font-size: 450%;">Trivia King</h1>
+        <div class="d-grid gap-2 col-4 mx-auto">
+            <a href="/login" class="btn btn-outline-info btn-lg mb-2">LOGIN</a>
             <a href="/register" class="btn btn-outline-info btn-lg">REGISTER</a>
         </div>
+        <p class="text-success mt-2" style="text-align: center;">Welcome to trivia king game</p>
     </div>
 </div>
 
