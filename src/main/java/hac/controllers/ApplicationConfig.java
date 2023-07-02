@@ -47,7 +47,7 @@ public class ApplicationConfig {
                 .csrf(withDefaults())
 
                 .authorizeHttpRequests((requests) -> requests
-                                .requestMatchers("/images/**", "/css/**", "/", "/403", "/simulateError","/login","/register","/adduser").permitAll()
+                                .requestMatchers("/images/**", "/css/**", "/", "/error","/login","/register","/adduser").permitAll()
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/user/**").hasRole("USER")
                                 .requestMatchers("/shared/**").hasAnyRole("USER", "ADMIN")
@@ -62,7 +62,7 @@ public class ApplicationConfig {
                 .logout((logout) -> logout.permitAll())
                 .exceptionHandling(
                         (exceptionHandling) -> exceptionHandling
-                                .accessDeniedPage("/403")
+                                .accessDeniedPage("/error")
                 )
 
         ;
