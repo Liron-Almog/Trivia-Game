@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:include="head :: head"></div>
-<body style="background: whitesmoke">
+<body style="background: whitesmoke; padding: 0px;">
 
 
-<div class="container fixed-top">
+<div class="container ">
     <div class="row ">
         <div class="text-center mt-5">
             <img th:src="@{/images/trivia-games-1.png}"  style="max-width: 200px;">
@@ -12,7 +12,7 @@
 
         <h1 class="mb-3 text-info" style="text-align: center; font-size: 450%;">Trivia King</h1>
         <div class="d-grid gap-2 col-4 mx-auto">
-            <a href="/login" class="btn btn-outline-info btn-lg mb-2">LOGIN</a>
+            <a href="/login" class="btn btn-outline-info btn-lg">LOGIN</a>
             <a href="/register" class="btn btn-outline-info btn-lg">REGISTER</a>
             <a href="/register" class="btn btn-outline-info btn-lg">INFO</a>
         </div>
