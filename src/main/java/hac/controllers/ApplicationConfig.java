@@ -47,7 +47,7 @@ public class ApplicationConfig {
                 .csrf(withDefaults())
 
                 .authorizeHttpRequests((requests) -> requests
-                                .requestMatchers("/css/**", "/", "/403", "/simulateError","/login","/register","/adduser").permitAll()
+                                .requestMatchers("/images/**", "/css/**", "/", "/403", "/simulateError","/login","/register","/adduser").permitAll()
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/user/**").hasRole("USER")
                                 .requestMatchers("/shared/**").hasAnyRole("USER", "ADMIN")

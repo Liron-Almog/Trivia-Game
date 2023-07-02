@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:include="head :: head"></div>
-<body style="background: black">
+<body style="background: whitesmoke">
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <h1 class="mb-5 text-info" style="text-align: center; font-size: 450%;">Trivia King</h1>
+
+<div class="container fixed-top">
+    <div class="row ">
+        <div class="text-center mt-5">
+            <img th:src="@{/images/trivia-games-1.png}"  style="max-width: 200px;">
+        </div>
+
+        <h1 class="mb-3 text-info" style="text-align: center; font-size: 450%;">Trivia King</h1>
         <div class="d-grid gap-2 col-4 mx-auto">
             <a href="/login" class="btn btn-outline-info btn-lg mb-2">LOGIN</a>
             <a href="/register" class="btn btn-outline-info btn-lg">REGISTER</a>
+            <a href="/register" class="btn btn-outline-info btn-lg">INFO</a>
         </div>
-        <p class="text-success mt-2" style="text-align: center;">Welcome to trivia king game</p>
+        <p class="text-success mt-3 mb-5" style="text-align: center;">Welcome to trivia king game</p>
+
     </div>
 </div>
 
