@@ -3,6 +3,8 @@ package hac.repo;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Length;
+
 import java.io.Serializable;
 
 
@@ -13,48 +15,52 @@ public class Question implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Length(message = "The Wrong Answer needs to be 1-100 chars", min = 1, max = 100)
+    private String wrongAnswer1;
+    @Length(message = "The Wrong Answer needs to be 1-100 chars", min = 1, max = 100)
     @NotEmpty(message = "Wrong Answer is mandatory")
-    private String wrongAnswers1;
-    @NotEmpty(message = "Wrong Answer is mandatory")
-    private String wrongAnswers2;
-    @NotEmpty(message = "Wrong Answer is mandatory")
-    private String wrongAnswers3;
+    private String wrongAnswer2;
 
+    @Length(message = "The Wrong Answer needs to be 1-100 chars", min = 1, max = 100)
+    @NotEmpty(message = "Wrong Answer is mandatory")
+    private String wrongAnswer3;
+
+    @NotEmpty(message = "Email is mandatory")
     @Email(message = "Email should be valid")
     private String email;
+
+    @Length(min = 1, max = 100)
     @NotEmpty(message = "Question is mandatory")
-    private String question;
+    private String quiz;
+    @Length(message = "The correctAnswer needs to be 1-100 chars", min = 1, max = 100)
     @NotEmpty(message = "Correct Answer is mandatory")
     private String correctAnswer;
 
-    public void setWrongAnswers1() {
-        this.wrongAnswers1 = wrongAnswers1;
+    public void setWrongAnswer1(String wrongAnswer1) {
+        this.wrongAnswer1 = wrongAnswer1;
     }
-    public void setWrongAnswers2() {
-        this.wrongAnswers2 = wrongAnswers2;
+    public void setWrongAnswer2(String wrongAnswer2) {
+        this.wrongAnswer2 = wrongAnswer2;
     }
-    public void setWrongAnswers3() {
-        this.wrongAnswers3 = wrongAnswers3;
-
+    public void setWrongAnswer3(String wrongAnswer3) {this.wrongAnswer3 = wrongAnswer3;}
+    public String getWrongAnswer1() {
+        return wrongAnswer1;
     }
-    public String getWrongAnswers1() {
-        return wrongAnswers1;
+    public String getWrongAnswer2() {
+        return wrongAnswer2;
     }
-    public String getWrongAnswers2() {
-        return wrongAnswers2;
+    public String getWrongAnswer3() {
+        return wrongAnswer3;
     }
-    public String getWrongAnswers3() {
-        return wrongAnswers3;
-    }
-    public Question(String email, String question, String correctAnswer,
-                            String wrongAnswers1,String wrongAnswers2,String
-                            wrongAnswers3) {
+    public Question(String email, String quiz, String correctAnswer,
+                            String wrongAnswer1,String wrongAnswer2,String
+                            wrongAnswer3) {
         this.email = email;
-        this.question = question;
+        this.quiz = quiz;
         this.correctAnswer = correctAnswer;
-        this.wrongAnswers1 = wrongAnswers1;
-        this.wrongAnswers2 = wrongAnswers2;
-        this.wrongAnswers3 = wrongAnswers3;
+        this.wrongAnswer1 = wrongAnswer1;
+        this.wrongAnswer2 = wrongAnswer2;
+        this.wrongAnswer3 = wrongAnswer3;
     }
     public Question() {
     }
@@ -66,8 +72,8 @@ public class Question implements Serializable {
     public String getEmail() {
         return email;
     }
-    public String getQuestion() {
-        return question;
+    public String getQuiz() {
+        return quiz;
     }
 
     public String getCorrectAnswer() {
@@ -87,7 +93,7 @@ public class Question implements Serializable {
         this.email=email;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setQuiz(String quiz) {
+        this.quiz = quiz;
     }
 }
