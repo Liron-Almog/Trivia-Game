@@ -2,21 +2,23 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <div th:include="head :: head"></div>
-<body style=" background: rgb(7,7,84);
-       background: linear-gradient(90deg, rgba(7,7,84,1) 0%, rgba(9,9,121,1) 27%, rgba(243,0,255,1) 100%); ">
+<body style="background: rgb(0,125,181);
+background: linear-gradient(90deg, rgba(0,125,181,1) 0%, rgba(147,221,255,1) 50%, rgba(0,125,181,1) 100%);
+padding: 0px;">
+
 
 
 <div class="container ">
     <div class="row ">
         <div class="text-center mt-5">
-            <img th:src="@{/images/homepage-bg.jpg}"  style="max-width: 200px; ">
+            <img th:src="@{/images/trivia-games-1.png}"  style="max-width: 200px; ">
         </div>
 
-        <h1 class="mb-3 text-info" style="text-align: center; font-size: 450%;">Trivia King</h1>
+        <h1 class="mb-3 text-white" style="text-align: center; font-size: 450%;">Trivia King</h1>
         <div class="d-grid gap-2 col-4 mx-auto">
-            <a href="/login" class="btn btn-outline-info btn-lg">LOGIN</a>
-            <a href="/register" class="btn btn-outline-info btn-lg">REGISTER</a>
-            <a href="/register" class="btn btn-outline-info btn-lg">INFO</a>
+            <a href="/login" class="btn btn-outline-light btn-lg">LOGIN</a>
+            <a href="/register" class="btn btn-outline-light btn-lg">REGISTER</a>
+            <a href="/register" class="btn btn-outline-light btn-lg">INFO</a>
         </div>
         <p class="text-success mt-3 mb-5" style="text-align: center;">Welcome to trivia king game</p>
 

@@ -1,11 +1,15 @@
 package hac.controllers;
 
+import hac.controllers.Beans.ControllerGame;
 import hac.repo.Question;
 import hac.repo.QuestionRepository;
 import hac.repo.User;
 import hac.repo.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +24,11 @@ public class MainController {
     private UserRepository repositoryUsers;
     @Autowired
     private QuestionRepository repositoryQuestion;
+
+    @Autowired
+    @Qualifier("sessionBeanControllerGame")
+    private ControllerGame sessionControllerGame;
+
     @ExceptionHandler({Exception.class})
     public String handleExceptions(Exception e, Model model) {
         model.addAttribute("err", e.getMessage());
@@ -33,8 +42,9 @@ public class MainController {
         if (result.hasErrors()) {
             return "register";
         }
+        sessionControllerGame.addUser(user);
         repositoryUsers.save(user);
-        return "game";
+        return "login";
     }
     @GetMapping("/admin/add-question")
     public String getAddQuestion(Question question, Model model)
@@ -42,6 +52,8 @@ public class MainController {
         model.addAttribute("question", question);
         return "add-question";
     }
+
+
     @PostMapping("/admin/add-question")
     public String addQuestion(@Valid Question question, BindingResult result, Model model) {
 
@@ -85,9 +97,11 @@ public class MainController {
     }
 
     @GetMapping("/shared/game")
-    public String game() {
+    public String game(Model model) {
 
 
+        model.addAttribute("currentQuestion", sessionControllerGame.currentQuestion());
+        model.addAttribute("numberOfQuestions", sessionControllerGame.numberOfQuestion());
         return "game";
     }
 

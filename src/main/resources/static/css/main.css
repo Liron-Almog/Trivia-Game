@@ -17,3 +17,6 @@ h1{
 h2{
     color:#FF0000;
 }
+input[type="radio"] {
+    display: none;
+}

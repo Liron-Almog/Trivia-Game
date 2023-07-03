@@ -1,19 +1,86 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <div th:include="head :: head"></div>
-<body>
-<div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
-  Logged user: <span sec:authentication="name">?</span> <br>
-  <form th:action="@{/logout}" method="post" style="display:inline">
-    <input type="submit" value="Logout"/>
-  </form>
-</div>
-<div class="container">
-  <div class="row" sec:authorize="hasRole('ADMIN')">
-    <a href="/admin/question"><button class="btn btn-primary mt-4" >Add/Delete Question</button></a >
+
+<body style="background: rgb(0,125,181);
+background: linear-gradient(90deg, rgba(0,125,181,1) 0%, rgba(147,221,255,1) 50%, rgba(0,125,181,1) 100%);
+padding: 0px;">
+
+  <div class="container">
+      <div class="row text-center">
+          <div class="col"></div>
+          <div class="col">
+              <img th:src="@{/images/title1.png}"  style="max-width: 400px; ">
+          </div>
+          <div class="col d-flex justify-content-start mt-3">
+              <div th:fragment="logout"  sec:authorize="isAuthenticated()" style="position:relative; left: 200px;">
+                  <p class="text-light">Hello <span sec:authentication="name">?</span> <br></p>
+                  <form th:action="@{/logout}" method="post" style="display:inline">
+                      <input type="submit" value="Logout" class="btn btn-danger"/>
+                  </form>
+              </div>
+          </div>
+      </div>
+
+
+      <div class="container mt-5">
+          <div class="row justify-content-center">
+              <h2 style="text-align: center"><span class="p-3 " style="border: 4px solid black; border-radius: 20px;">What is the capital of France?</span></h2>
+          </div>
+
+
+          <form action="/submit-answer" method="post" class="mt-5">
+
+              <div class="row justify-content-center space">
+
+                  <button type="button" class="btn btn-light col-3 m-2">
+                      <label for="answer1" class="answer-btn">
+                          Paris
+                          <input type="radio" name="answer" id="answer1" value="Paris">
+                      </label>
+                  </button>
+
+
+                  <button type="button" class="btn btn-light col-3 m-2">
+                      London
+                      <input type="radio" name="answer" id="answer2" value="London">
+                      </label>
+                  </button>
+              </div>
+
+              <div class="row justify-content-center">
+                  <button type="button" class="btn btn-light col-3 m-2">
+                      <label for="answer3" class="answer-btn">
+                          Rome
+                          <input type="radio" name="answer" id="answer3" value="Rome">
+                      </label>
+                  </button>
+
+                  <button type="button" class="btn btn-light col-3 m-2">
+                      <label for="answer4" class="answer-btn">
+                          Berlin
+                          <input type="radio" name="answer" id="answer4" value="Berlin">
+                      </label>
+                  </button>
+
+              </div>
+
+              <div class="row justify-content-center mt-4">
+                  <button type="submit" class="col-2 btn btn-primary">Submit</button>
+              </div>
+
+              <h5 class="mt-1" style="text-align: center" th:text="${currentQuestion + '/' + numberOfQuestions}"></h5>
+
+          </form>
+      </div>
+
+    <div class="row" sec:authorize="hasRole('ADMIN')">
+      <a href="/admin/question"><button class="btn btn-primary mt-4" >Add/Delete Question</button></a >
+    </div>
+
   </div>
-  <h1>Start Game</h1>
-</div>
+
+
 
 </body>
 </html>

@@ -18,16 +18,16 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 public class ApplicationConfig {
 
+    InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
 
     @Bean
     @SessionScope
     public ControllerGame sessionBeanControllerGame () {
-        return new ControllerGame();
+        return new ControllerGame(manager);
     }
 
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder bCryptPasswordEncoder) {
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(User.withUsername("user")
                 .password(bCryptPasswordEncoder.encode("password"))
                 .roles("USER")
