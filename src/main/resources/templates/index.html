@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
 <div th:include="head :: head"></div>
-<body style="background: whitesmoke; padding: 0px;">
+<body  background: rgb(7,7,84);
+       background: linear-gradient(90deg, rgba(7,7,84,1) 0%, rgba(9,9,121,1) 27%, rgba(243,0,255,1) 100%); >
 
 
 <div class="container ">
     <div class="row ">
         <div class="text-center mt-5">
-            <img th:src="@{/images/trivia-games-1.png}"  style="max-width: 200px;">
+            <img th:src="@{/images/homepage-bg.jpg}"  style="max-width: 200px; ">
         </div>
 
         <h1 class="mb-3 text-info" style="text-align: center; font-size: 450%;">Trivia King</h1>

@@ -46,21 +46,14 @@ public class MainController {
     @PostMapping("/admin/add-question")
     public String addQuestion(@Valid Question question, BindingResult result, Model model) {
 
-//                    model.addAttribute("question", question);
-//            model.addAttribute("questions", repositoryQuestion.findAll());
-     //   return "redirect:/questions";
+
         if (result.hasErrors()) {
-//            model.addAttribute("question", question);
-//            model.addAttribute("questions", repositoryQuestion.findAll());
             model.addAttribute("question", question);
             return "add-question";
         }
-//        System.out.println("hhhhhhhhhhhhhhhhhere");
-        // validate the object and get the errors
-        //repositoryQuestion.save(question);
-//        model.addAttribute("question", question);
-//        model.addAttribute("questions", repositoryQuestion.findAll());
-    //    return "redirect:/questions";
+
+
+        repositoryQuestion.save(question);
 
         return "redirect:/admin/question";
     }
