@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <div th:include="head :: head"></div>
 <body>
+<div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
+  Logged user: <span sec:authentication="name">?</span> <br>
+  <form th:action="@{/logout}" method="post" style="display:inline">
+    <input type="submit" value="Logout"/>
+  </form>
+</div>
 <div class="container">
-  <div class="row">
-    <a href="/admin/question"><button class="btn btn-primary mt-4">Add/Delete Question</button></a>
-
+  <div class="row" sec:authorize="hasRole('ADMIN')">
+    <a href="/admin/question"><button class="btn btn-primary mt-4" >Add/Delete Question</button></a >
   </div>
   <h1>Start Game</h1>
 </div>

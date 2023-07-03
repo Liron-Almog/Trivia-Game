@@ -16,18 +16,12 @@ public class User implements Serializable {
     private String userName;
 
 
-    @NotNull
-    @Column(unique = true)
-    @NotEmpty(message = "Email is mandatory")
-    @Email(message = "Email should be valid")
-    private String email;
 
     @Length(message = "The password needs to be 4-10 chars", min = 4, max = 10)
     private String password;
 
 
-    public User(String email, String userName, String password) {
-        this.email = email;
+    public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
     }
@@ -45,9 +39,6 @@ public class User implements Serializable {
         return userName;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
     public String getPassword() {
         return password;
@@ -61,9 +52,6 @@ public class User implements Serializable {
         this.userName=userName;
     }
 
-    public void setEmail(String email) {
-        this.email=email;
-    }
 
     public void setPassword(String password) {
         this.password = password;

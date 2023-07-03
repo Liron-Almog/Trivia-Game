@@ -15,17 +15,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("")
 public class MainController {
 
-    @ExceptionHandler({Exception.class})
-    public String handleExceptions(Exception e, Model model) {
-        model.addAttribute("err", e.getMessage());
-        return "error";
-    }
-
     /* inject via its type the User repo bean - a singleton */
     @Autowired
     private UserRepository repositoryUsers;
     @Autowired
     private QuestionRepository repositoryQuestion;
+    @ExceptionHandler({Exception.class})
+    public String handleExceptions(Exception e, Model model) {
+        model.addAttribute("err", e.getMessage());
+        return "error";
+    }
 
     @PostMapping("/adduser")
     public String addUser(@Valid User user, BindingResult result, Model model) {
@@ -87,6 +86,8 @@ public class MainController {
 
     @GetMapping("/shared/game")
     public String game() {
+
+
         return "game";
     }
 
