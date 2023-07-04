@@ -1,7 +1,6 @@
 package hac.repo;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
@@ -25,9 +24,6 @@ public class Question implements Serializable {
     @NotEmpty(message = "Wrong Answer is mandatory")
     private String wrongAnswer3;
 
-    @NotEmpty(message = "Email is mandatory")
-    @Email(message = "Email should be valid")
-    private String email;
 
     @Length(min = 1, max = 100)
     @NotEmpty(message = "Question is mandatory")
@@ -52,10 +48,9 @@ public class Question implements Serializable {
     public String getWrongAnswer3() {
         return wrongAnswer3;
     }
-    public Question(String email, String quiz, String correctAnswer,
+    public Question(String quiz, String correctAnswer,
                             String wrongAnswer1,String wrongAnswer2,String
                             wrongAnswer3) {
-        this.email = email;
         this.quiz = quiz;
         this.correctAnswer = correctAnswer;
         this.wrongAnswer1 = wrongAnswer1;
@@ -69,9 +64,6 @@ public class Question implements Serializable {
         return id;
     }
 
-    public String getEmail() {
-        return email;
-    }
     public String getQuiz() {
         return quiz;
     }
@@ -87,10 +79,6 @@ public class Question implements Serializable {
 
     public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer=correctAnswer;
-    }
-
-    public void setEmail(String email) {
-        this.email=email;
     }
 
     public void setQuiz(String quiz) {

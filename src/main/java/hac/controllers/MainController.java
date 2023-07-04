@@ -8,8 +8,6 @@ import hac.repo.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -99,12 +97,42 @@ public class MainController {
     @GetMapping("/shared/game")
     public String game(Model model) {
 
-
-        model.addAttribute("currentQuestion", sessionControllerGame.currentQuestion());
-        model.addAttribute("numberOfQuestions", sessionControllerGame.numberOfQuestion());
+        if(!sessionControllerGame.questionsIsOver()) {
+            model.addAttribute("answers", sessionControllerGame.getAnswers());
+            model.addAttribute("question", sessionControllerGame.getQuiz());
+            model.addAttribute("currentQuestion", sessionControllerGame.currentQuestion());
+            model.addAttribute("numberOfQuestions", sessionControllerGame.numberOfQuestion());
+        }
         return "game";
     }
 
+    @PostMapping("/shared/submit-question")
+    public String submitQuestion(@RequestParam(name = "selectedAnswer", required = false, defaultValue = "") String selectedAnswer, Model model){
+
+        System.out.println(selectedAnswer);
+        if (selectedAnswer != "" && selectedAnswer.equals(sessionControllerGame.getCorrectAnswer())) {
+            sessionControllerGame.nextQuestion();
+            if(sessionControllerGame.questionsIsOver())
+                return "redirect:/shared/score";
+
+            return "redirect:/shared/game";
+        }
+
+        return "redirect:/shared/score";
+    }
+
+    @GetMapping("/shared/score")
+    public String showScore(Model model) {
+
+        model.addAttribute("question",sessionControllerGame.numberOfQuestion());
+        model.addAttribute("answered",sessionControllerGame.currentQuestion());
+        model.addAttribute("score",sessionControllerGame.getScore());
+        return "score";
+    }
+    @GetMapping("/shared/score-table")
+    public String showTableScore(Model model) {
+        return "score-table";
+    }
     @GetMapping("/register")
     public String register(User user, Model model) {
         model.addAttribute("user",user);

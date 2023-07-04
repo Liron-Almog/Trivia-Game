@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:include="head :: head"></div>
+
+<body style="background: rgb(0,125,181);
+background: linear-gradient(90deg, rgba(0,125,181,1) 0%, rgba(147,221,255,1) 50%, rgba(0,125,181,1) 100%);
+padding: 0px;">
+
+
+<div class="container mt-5">
+    <div class="row ">
+        <h1 class="mt-5" style="text-align: center" th:text="'Your Score is: ' + ${score}"></h1>
+        <h4 class="mt-1" style="text-align: center" th:text="'You have been answering on: ' + ${answered} + '/' + ${question}"></h4>
+
+
+        <div class="row justify-content-center">
+            <div class="col-3">
+                <div class="row">
+                <a href="/shared/start-game"  role="button" class="mt-1 btn btn-outline-light btn-lg">Play Again</a>
+            </div>
+                <div class="row">
+                 <a href="/shared/score-table" role="button" class="btn mt-1 btn-outline-light btn-lg">View Table</a>
+                </div>
+        </div>
+        </div>
+        <h6 class="text-success mt-2 " style="text-align: center;">Thanks for playing with us!!</h6>
+    </div>
+</div>
+</body>
+</html>

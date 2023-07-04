@@ -25,44 +25,25 @@ padding: 0px;">
 
       <div class="container mt-5">
           <div class="row justify-content-center">
-              <h2 style="text-align: center"><span class="p-3 " style="border: 4px solid black; border-radius: 20px;">What is the capital of France?</span></h2>
+              <h2 style="text-align: center"><span th:text="${question}" class="p-3 " style="border: 4px solid black; border-radius: 20px;">
+                  ?</span></h2>
           </div>
 
 
-          <form action="/submit-answer" method="post" class="mt-5">
-
-              <div class="row justify-content-center space">
-
-                  <button type="button" class="btn btn-light col-3 m-2">
-                      <label for="answer1" class="answer-btn">
-                          Paris
-                          <input type="radio" name="answer" id="answer1" value="Paris">
-                      </label>
-                  </button>
-
-
-                  <button type="button" class="btn btn-light col-3 m-2">
-                      London
-                      <input type="radio" name="answer" id="answer2" value="London">
-                      </label>
-                  </button>
-              </div>
-
+          <form th:action="@{/shared/submit-question}" method="post" class="mt-5">
               <div class="row justify-content-center">
-                  <button type="button" class="btn btn-light col-3 m-2">
-                      <label for="answer3" class="answer-btn">
-                          Rome
-                          <input type="radio" name="answer" id="answer3" value="Rome">
-                      </label>
-                  </button>
-
-                  <button type="button" class="btn btn-light col-3 m-2">
-                      <label for="answer4" class="answer-btn">
-                          Berlin
-                          <input type="radio" name="answer" id="answer4" value="Berlin">
-                      </label>
-                  </button>
-
+                  <div class="col-8">
+                      <div class="row justify-content-center">
+                          <th:block th:each="answer, index : ${answers}">
+                              <button type="button" class="btn btn-light m-2 col-5">
+                                  <label th:for="'answer' + ${index}" class="answer-btn">
+                                      <span th:text="${answer}"></span>
+                                      <input type="radio" name="selectedAnswer" th:id="'answer' + ${index}" th:value="${answer}">
+                                  </label>
+                              </button>
+                          </th:block>
+                      </div>
+                  </div>
               </div>
 
               <div class="row justify-content-center mt-4">
@@ -70,8 +51,8 @@ padding: 0px;">
               </div>
 
               <h5 class="mt-1" style="text-align: center" th:text="${currentQuestion + '/' + numberOfQuestions}"></h5>
-
           </form>
+
       </div>
 
     <div class="row" sec:authorize="hasRole('ADMIN')">
@@ -79,8 +60,6 @@ padding: 0px;">
     </div>
 
   </div>
-
-
 
 </body>
 </html>
