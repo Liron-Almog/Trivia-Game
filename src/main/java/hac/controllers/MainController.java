@@ -45,13 +45,13 @@ public class MainController {
         }
         sessionControllerGame.addUser(user);
         repositoryUsers.save(user);
-        return "login";
+        return "everyone/login";
     }
     @GetMapping("/admin/add-question")
     public String getAddQuestion(Question question, Model model)
     {
         model.addAttribute("question", question);
-        return "add-question";
+        return "admin/add-question";
     }
 
 
@@ -60,7 +60,7 @@ public class MainController {
 
         if (result.hasErrors()) {
             model.addAttribute("question", question);
-            return "add-question";
+            return "admin/add-question";
         }
 
         repositoryQuestion.save(question);
@@ -89,17 +89,17 @@ public class MainController {
     @GetMapping("/admin/question")
     public String getQuestion(Model model) {
         model.addAttribute("questions", repositoryQuestion.findAll());
-        return "questions";
+        return "/admin/questions";
     }
 
     @GetMapping("/")
     public String index(Model model) {
-        return "index";
+        return "everyone/index";
     }
 
     @GetMapping("/login")
     public String login() {
-        return "login";
+        return "everyone/login";
     }
 
     @GetMapping("/shared/game")
@@ -111,7 +111,7 @@ public class MainController {
             model.addAttribute("currentQuestion", sessionControllerGame.currentQuestion());
             model.addAttribute("numberOfQuestions", sessionControllerGame.numberOfQuestion());
         }
-        return "game";
+        return "shared/game";
     }
 
     @PostMapping("/shared/submit-question")
@@ -141,7 +141,7 @@ public class MainController {
         model.addAttribute("question",sessionControllerGame.numberOfQuestion());
         model.addAttribute("answered",sessionControllerGame.currentQuestion());
         model.addAttribute("score",sessionControllerGame.getScore());
-        return "score";
+        return "shared/score";
     }
 
     @GetMapping("/shared/score-table")
@@ -153,12 +153,12 @@ public class MainController {
         List<PlayerTable> topPlayers = playerTable.subList(0, maxSize);
         model.addAttribute("users", topPlayers);
 
-        return "score-table";
+        return "shared/score-table";
     }
     @GetMapping("/register")
     public String register(User user, Model model) {
         model.addAttribute("user",user);
-        return "register";
+        return "everyone/register";
     }
 }
 
