@@ -1,63 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <div th:include="fragment/head :: head"></div>
+<body style="background: rgb(0,125,181);
+background: linear-gradient(90deg, rgba(0,125,181,1) 0%, rgba(147,221,255,1) 50%, rgba(0,125,181,1) 100%);
+padding: 0px;">
 
-<body>
-  <div class="row ">
-    <div class="col-12">
+<div class="container">
+
       <form action="#" th:action="@{/admin/add-question}" th:object="${question}" method="post">
+        <h2 class="mt-5 mb-3 text-dark fw-bold text-center" >Add new question</h2>
 
         <div class="row justify-content-center">
-
           <div class="form-group col-5">
-            <label for="quiz" class="col-form-label text-white">Question</label>
+            <label for="quiz" class="col-form-label text-dark">Question</label>
             <input type="text" th:field="*{quiz}" class="form-control" id="quiz" placeholder="Quiz">
             <span th:if="${#fields.hasErrors('quiz')}" th:errors="*{quiz}" class="text-danger"></span>
           </div>
         </div>
 
         <div class="row justify-content-center">
-          <div class="form-group col-5">
-            <label for="correctAnswer" class="col-form-label text-white">Correct Answer</label>
+          <div class="form-group col-12 col-md-5">
+            <label for="correctAnswer" class="col-form-label text-dark">Correct Answer</label>
             <input type="text" th:field="*{correctAnswer}" class="form-control" id="correctAnswer" placeholder="correctAnswer">
             <span th:if="${#fields.hasErrors('correctAnswer')}" th:errors="*{correctAnswer}" class="text-danger"></span>
           </div>
 
-          <div class="form-group col-5">
-            <label for="wrongAnswer1" class="col-form-label text-white">wrong Answer 1</label>
+          <div class="form-group col-12 col-md-5">
+            <label for="wrongAnswer1" class="col-form-label text-dark">wrong Answer 1</label>
             <input type="text" th:field="*{wrongAnswer1}" class="form-control" id="wrongAnswer1" placeholder="wrongAnswer1">
             <span th:if="${#fields.hasErrors('wrongAnswer1')}" th:errors="*{wrongAnswer1}" class="text-danger"></span>
           </div>
-
         </div>
 
-                <div class="row justify-content-center">
-                  <div class="form-group col-5">
-                    <label for="wrongAnswer2" class="col-form-label text-white">Wrong Answer 2</label>
-                    <input type="text" th:field="*{wrongAnswer2}" class="form-control" id="wrongAnswer2" placeholder="wrongAnswer2">
-                    <span th:if="${#fields.hasErrors('wrongAnswer2')}" th:errors="*{wrongAnswer2}" class="text-danger"></span>
-                  </div>
+        <div class="row justify-content-center">
+          <div class="form-group col-5">
+            <label for="wrongAnswer2" class="col-form-label text-dark">Wrong Answer 2</label>
+            <input type="text" th:field="*{wrongAnswer2}" class="form-control" id="wrongAnswer2" placeholder="wrongAnswer2">
+            <span th:if="${#fields.hasErrors('wrongAnswer2')}" th:errors="*{wrongAnswer2}" class="text-danger"></span>
+          </div>
 
-                  <div class="form-group col-5">
-                    <label for="wrongAnswer3" class="col-form-label text-white">Wrong Answers 3</label>
-                    <input type="text" th:field="*{wrongAnswer3}" class="form-control" id="wrongAnswer3" placeholder="wrongAnswer3">
-                    <span th:if="${#fields.hasErrors('wrongAnswer3')}" th:errors="*{wrongAnswer3}" class="text-danger"></span>
-                  </div>
-                </div>
+          <div class="form-group col-5">
+            <label for="wrongAnswer3" class="col-form-label text-dark">Wrong Answers 3</label>
+            <input type="text" th:field="*{wrongAnswer3}" class="form-control" id="wrongAnswer3" placeholder="wrongAnswer3">
+            <span th:if="${#fields.hasErrors('wrongAnswer3')}" th:errors="*{wrongAnswer3}" class="text-danger"></span>
+          </div>
+        </div>
 
-
-        <div class="row justify-content-center mt-3">
-          <input type="submit" class="btn btn-primary" value="Add Question">
+        <div class="row d-grid gap-2 col-6 mx-auto mt-3">
+            <input type="submit" class="btn btn-success" value="Add Question">
+            <button onclick="location.href='/shared/start-game'" type="button" class="btn btn-success">Return to game page</button>
         </div>
 
       </form>
-    </div>
-  </div>
-  </div>
 
-  <div class="row m-3">
-    <a href="/shared/start-game" class="btn btn-primary mt-4">Return to game page</a>
-  </div>
+
+</div>
+
 
 </body>
 </html>

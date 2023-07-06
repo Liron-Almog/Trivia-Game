@@ -20,6 +20,6 @@ h2{
 input[type="radio"] {
     display: none;
 }
-label:hover {
-    background: linear-gradient(#225588, #002255);
-}
+/*label:hover {*/
+/*    background: linear-gradient(#225588, #002255);*/
+/*}*/
