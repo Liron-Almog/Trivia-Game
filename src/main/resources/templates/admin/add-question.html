@@ -10,8 +10,8 @@ padding: 0px;">
       <form action="#" th:action="@{/admin/add-question}" th:object="${question}" method="post">
         <h2 class="mt-5 mb-3 text-dark fw-bold text-center" >Add new question</h2>
 
-        <div class="row justify-content-center">
-          <div class="form-group col-5">
+        <div class="row justify-content-center mt-1">
+          <div class="col-md-5 col-sm-10">
             <label for="quiz" class="col-form-label text-dark">Question</label>
             <input type="text" th:field="*{quiz}" class="form-control" id="quiz" placeholder="Quiz">
             <span th:if="${#fields.hasErrors('quiz')}" th:errors="*{quiz}" class="text-danger"></span>
@@ -19,13 +19,13 @@ padding: 0px;">
         </div>
 
         <div class="row justify-content-center">
-          <div class="form-group col-12 col-md-5">
+          <div class="col-md-5 col-sm-12 ">
             <label for="correctAnswer" class="col-form-label text-dark">Correct Answer</label>
             <input type="text" th:field="*{correctAnswer}" class="form-control" id="correctAnswer" placeholder="correctAnswer">
             <span th:if="${#fields.hasErrors('correctAnswer')}" th:errors="*{correctAnswer}" class="text-danger"></span>
           </div>
 
-          <div class="form-group col-12 col-md-5">
+          <div class=" col-md-5 col-sm-12 ">
             <label for="wrongAnswer1" class="col-form-label text-dark">wrong Answer 1</label>
             <input type="text" th:field="*{wrongAnswer1}" class="form-control" id="wrongAnswer1" placeholder="wrongAnswer1">
             <span th:if="${#fields.hasErrors('wrongAnswer1')}" th:errors="*{wrongAnswer1}" class="text-danger"></span>
@@ -33,22 +33,22 @@ padding: 0px;">
         </div>
 
         <div class="row justify-content-center">
-          <div class="form-group col-5">
+          <div class=" col-md-5 col-sm-12">
             <label for="wrongAnswer2" class="col-form-label text-dark">Wrong Answer 2</label>
             <input type="text" th:field="*{wrongAnswer2}" class="form-control" id="wrongAnswer2" placeholder="wrongAnswer2">
             <span th:if="${#fields.hasErrors('wrongAnswer2')}" th:errors="*{wrongAnswer2}" class="text-danger"></span>
           </div>
 
-          <div class="form-group col-5">
+          <div class=" col-md-5 col-sm-12">
             <label for="wrongAnswer3" class="col-form-label text-dark">Wrong Answers 3</label>
             <input type="text" th:field="*{wrongAnswer3}" class="form-control" id="wrongAnswer3" placeholder="wrongAnswer3">
             <span th:if="${#fields.hasErrors('wrongAnswer3')}" th:errors="*{wrongAnswer3}" class="text-danger"></span>
           </div>
         </div>
 
-        <div class="row d-grid gap-2 col-6 mx-auto mt-3">
+        <div class="row d-grid gap-2 col-md-3 col-12 mx-auto mt-4">
             <input type="submit" class="btn btn-success" value="Add Question">
-            <button onclick="location.href='/shared/start-game'" type="button" class="btn btn-success">Return to game page</button>
+            <button onclick="location.href='/shared/start-game'" type="button" class="btn btn-success">Return to game </button>
         </div>
 
       </form>
