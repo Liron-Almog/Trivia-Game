@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<div th:include="head :: head"></div>
+<div th:include="fragment/head :: head"></div>
 
 <body>
   <div class="row ">
@@ -8,12 +8,6 @@
       <form action="#" th:action="@{/admin/add-question}" th:object="${question}" method="post">
 
         <div class="row justify-content-center">
-
-          <div class="form-group col-5">
-            <label for="email" class="col-form-label text-info">Email</label>
-            <input type="text" th:field="*{email}" class="form-control" id="email" placeholder="Email">
-            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
-          </div>
 
           <div class="form-group col-5">
             <label for="quiz" class="col-form-label text-white">Question</label>
@@ -62,7 +56,7 @@
   </div>
 
   <div class="row m-3">
-    <a href="/shared/game" class="btn btn-primary mt-4">Return to game page</a>
+    <a href="/shared/start-game" class="btn btn-primary mt-4">Return to game page</a>
   </div>
 
 </body>

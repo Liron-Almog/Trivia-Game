@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<div th:include="head :: head"></div>
+<div th:include="fragment/head :: head"></div>
 <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
 <body style="padding: 0px; background: black">
 <div class="container">
@@ -17,17 +17,18 @@
         <div class="row d-flex justify-content-center">
             <h1 class="mb-3 text-danger" style="text-align: center; ">Opps! <br>Something went wrong...</h1>
             <div class="col-4 d-flex justify-content-center">
-                <a href="/" class="btn btn-warning">Return to Home page</a>
+                <a href="/static" class="btn btn-warning">Return to Home page</a>
             </div>
 
         </div>
     </div>
-
-
+    <div class="row justify-content-center">
+        <h1 class="text-white" th:text="${err}"></h1>
+    </div>
 </div>
 
 
-<h1 th:text="${err}"></h1>
+
 
 </body>
 </html>

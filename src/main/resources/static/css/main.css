@@ -17,3 +17,9 @@ h1{
 h2{
     color:#FF0000;
 }
+input[type="radio"] {
+    display: none;
+}
+label:hover {
+    background: linear-gradient(#225588, #002255);
+}

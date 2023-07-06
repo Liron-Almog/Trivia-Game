@@ -1,5 +1,6 @@
 package hac.controllers;
 
+import hac.controllers.Beans.ControllerGame;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,15 +11,23 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.context.annotation.SessionScope;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 public class ApplicationConfig {
 
+    InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+
+    @Bean
+    @SessionScope
+    public ControllerGame sessionBeanControllerGame () {
+        return new ControllerGame(manager);
+    }
+
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder bCryptPasswordEncoder) {
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(User.withUsername("user")
                 .password(bCryptPasswordEncoder.encode("password"))
                 .roles("USER")
@@ -55,7 +64,7 @@ public class ApplicationConfig {
                 .formLogin((form) -> form
                         .loginPage("/login")
 //                                .loginProcessingUrl("/shared/game")
-                               .defaultSuccessUrl("/shared/game", true)
+                               .defaultSuccessUrl("/shared/start-game", true)
 //                                .failureUrl("/")
                         .permitAll()
                 )

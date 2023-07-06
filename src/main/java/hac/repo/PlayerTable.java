@@ -1,32 +1,26 @@
 package hac.repo;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import org.hibernate.validator.constraints.Length;
 
 import java.io.Serializable;
 
 @Entity
-public class User implements Serializable {
+public class PlayerTable implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "First name is mandatory")
     private String userName;
 
+    private double score;
 
 
-    @Length(message = "The password needs to be 4-10 chars", min = 4, max = 10)
-    private String password;
-
-
-    public User(String userName, String password) {
+    public PlayerTable(String userName, double score) {
         this.userName = userName;
-        this.password = password;
+        this.score = score;
     }
 
-    public User() {
+    public PlayerTable() {
 
     }
 
@@ -40,8 +34,8 @@ public class User implements Serializable {
     }
 
 
-    public String getPassword() {
-        return password;
+    public double getScore() {
+        return score;
     }
 
     public void setId(Long id) {
@@ -53,7 +47,7 @@ public class User implements Serializable {
     }
 
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setScore(double score) {
+        this.score = score;
     }
 }
