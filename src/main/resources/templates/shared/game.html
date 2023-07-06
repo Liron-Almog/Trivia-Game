@@ -36,18 +36,19 @@ padding: 0px;">
               </div>
 
           <form  th:action="@{/shared/submit-question}" method="post" class="mt-5">
-
-
+              <div class="row justify-content-center">
+                  <div class="col-8">
+                      <div class="row justify-content-center">
                           <th:block th:each="answer, index : ${answers}">
-                              <button type="button" class="btn btn-light m-2 col-10 col-md-5 ">
+                              <button type="button" class="btn btn-light m-2 col-5">
                                   <label th:for="'answer' + ${index}" class="answer-btn">
                                       <span th:text="${answer}"></span>
                                       <input type="radio" name="selectedAnswer" th:id="'answer' + ${index}" th:value="${answer}">
                                   </label>
                               </button>
                           </th:block>
-
-
+                      </div>
+                  </div>
               </div>
 
               <div class="row justify-content-center mt-4">
