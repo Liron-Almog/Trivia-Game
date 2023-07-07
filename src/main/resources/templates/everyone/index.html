@@ -6,20 +6,25 @@
 background: linear-gradient(90deg, rgba(0,125,181,1) 0%, rgba(147,221,255,1) 50%, rgba(0,125,181,1) 100%);
 padding: 0px;">
 
-<div class="container ">
-    <div class="row ">
-        <div class="text-center mt-5">
-            <img th:src="@{/images/trivia-games-1.png}"  style="max-width: 200px; ">
-        </div>
+<div class="container mt-5">
+    <div class="row justify-content-center  mt-5">
+        <img th:src="@{/images/trivia-games-1.png}"  style="max-width: 200px;">
+    </div>
 
-        <h1 class="mb-3 text-white" style="text-align: center; font-size: 450%;">Trivia King</h1>
-        <div class="d-grid gap-2 col-4 mx-auto">
-            <a href="/login" class="btn btn-outline-light btn-lg">LOGIN</a>
-            <a href="/register" class="btn btn-outline-light btn-lg">REGISTER</a>
-            <a href="/register" class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">INFO</a>
+    <h1 class="text-dark" style="text-align: center; font-size: 550%;">Trivia King</h1>
+    <h6 class="text-dark font-weight-bold mb-5 " style="text-align: center">Welcome To Trivia King Game</h6>
+    <div class="row justify-content-center">
+        <div class="row justify-content-center">
+            <a href="/login" class="btn col-3 mb-1 btn-success">Login</a>
         </div>
+        <div class="row justify-content-center">
+            <a href="/register" class="btn mb-1 col-3 btn-success ">Register</a>
+        </div>
+        <div class="row justify-content-center">
+            <a class="btn text-white col-3 mb-3 btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Information</a>
+        </div>
+    </div>
 
-        <p class="text-success mt-3 mb-5" style="text-align: center;">Welcome to trivia king game</p>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

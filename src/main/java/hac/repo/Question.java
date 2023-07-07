@@ -14,21 +14,21 @@ public class Question implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Length(message = "The Wrong Answer needs to be 1-100 chars", min = 1, max = 100)
+    @Length(message = "The Wrong Answer needs to be 1-30 chars", min = 1, max = 30)
     private String wrongAnswer1;
-    @Length(message = "The Wrong Answer needs to be 1-100 chars", min = 1, max = 100)
+    @Length(message = "The Wrong Answer needs to be 1-30 chars", min = 1, max = 30)
     @NotEmpty(message = "Wrong Answer is mandatory")
     private String wrongAnswer2;
 
-    @Length(message = "The Wrong Answer needs to be 1-100 chars", min = 1, max = 100)
+    @Length(message = "The Wrong Answer needs to be 1-30 chars", min = 1, max = 30)
     @NotEmpty(message = "Wrong Answer is mandatory")
     private String wrongAnswer3;
 
 
-    @Length(min = 1, max = 100)
+    @Length(message = "The Question needs to be 1-50 chars",min = 1, max = 50)
     @NotEmpty(message = "Question is mandatory")
     private String quiz;
-    @Length(message = "The correctAnswer needs to be 1-100 chars", min = 1, max = 100)
+    @Length(message = "The correctAnswer needs to be 1-30 chars", min = 1, max = 30)
     @NotEmpty(message = "Correct Answer is mandatory")
     private String correctAnswer;
 

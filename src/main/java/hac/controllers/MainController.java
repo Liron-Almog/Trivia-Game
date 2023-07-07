@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("")
@@ -38,15 +39,23 @@ public class MainController {
 
     @PostMapping("/adduser")
     public String addUser(@Valid User user, BindingResult result, Model model) {
-        // validate the object and get the errors
 
         if (result.hasErrors()) {
-            return "register";
+            return "/everyone/register";
         }
-        sessionControllerGame.addUser(user);
-        repositoryUsers.save(user);
-        return "everyone/login";
+        try {
+            //if the user doesn't exist it will throw exception
+            User existingUser = repositoryUsers.findByUserName(user.getUserName());
+            sessionControllerGame.addUser(user);
+            repositoryUsers.save(user);
+            return "redirect:/everyone/login";
+
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "Something went wrong, try to choose another name");
+            return "/everyone/register";
+        }
     }
+
     @GetMapping("/admin/add-question")
     public String getAddQuestion(Question question, Model model)
     {
@@ -118,7 +127,7 @@ public class MainController {
     public String submitQuestion(@RequestParam(name = "selectedAnswer", required = false, defaultValue = "") String selectedAnswer, Model model){
 
         System.out.println(selectedAnswer);
-        if (selectedAnswer != "" && selectedAnswer.equals(sessionControllerGame.getCorrectAnswer())) {
+        if (selectedAnswer.equals(sessionControllerGame.getCorrectAnswer())) {
             sessionControllerGame.nextQuestion();
             if(sessionControllerGame.questionsIsOver())
                 return "redirect:/shared/score";
@@ -134,8 +143,11 @@ public class MainController {
 
         PlayerTable playerTable = repositoryTable.findByUserName(principal.getName());
 
-        if(playerTable == null || sessionControllerGame.getScore() > playerTable.getScore()){
+        if(playerTable == null){
             repositoryTable.save(new PlayerTable(principal.getName(),sessionControllerGame.getScore()));
+        }
+        else if(sessionControllerGame.getScore() > playerTable.getScore()){
+            repositoryTable.updateScore(principal.getName(), sessionControllerGame.getScore());
         }
 
         model.addAttribute("question",sessionControllerGame.numberOfQuestion());

@@ -1,79 +1,72 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<div th:include="fragment/head :: head"></div>
+<head>
+    <div th:include="fragment/head :: head"></div>
+</head>
 
 <body style="background: rgb(0,125,181);
 background: linear-gradient(90deg, rgba(0,125,181,1) 0%, rgba(147,221,255,1) 50%, rgba(0,125,181,1) 100%);
 padding: 0px;">
 
-  <div class="container">
-      <div class="row text-center">
-          <div class="col align-self-start mt-5">
-              <div class="d-flex">
-                  <div sec:authorize="hasRole('ADMIN')">
-                      <a href="/admin/question" class="btn btn-dark">Add/Delete Question</a>
-                  </div>
-                  <a href="/score-table" class="btn btn-dark ml-2">View Scores</a>
-              </div>
-          </div>
-          <div class="col">
-              <img th:src="@{/images/title1.png}"  style="max-width: 350px; ">
-          </div>
-          <div class="col"></div>
+<div class="container">
+    <div class="row mt-3 justify-content-start">
+        <div class="col-4 col-md-2">
+            <a href="/shared/score-table" class="btn btn-dark btn-block">View Scores</a>
+        </div>
+        <div class="col-4 col-md-2" sec:authorize="hasRole('ADMIN')">
+            <a href="/admin/question" class="btn btn-dark btn-block">Edit Questions</a>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-2">
+        <img class="img-fluid" th:src="@{/images/title1.png}" style="max-width: 300px;">
+    </div>
+
+    <div th:if="${numberOfQuestions} != null">
+        <div class="row justify-content-center mt-5">
+            <div class="col-6" style="word-wrap: break-word;">
+                <h2 class="rounded-pill bg-dark text-light p-3" style="text-align: center; display: block;" th:text="${question}"></h2>
+            </div>
+        </div>
 
 
-      </div>
 
+        <form th:action="@{/shared/submit-question}" method="post" class="mt-2">
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <div class="row justify-content-center">
+                        <th:block th:each="answer, index : ${answers}">
+                            <button type="button" style="background-color: #ffffd6" class="btn m-2 text-dark col-lg-5 col-sm-8 rounded-pill">
+                                <label th:for="'answer' + ${index}" class="answer-btn">
+                                    <span th:text="${answer}"></span>
+                                    <input type="radio" name="selectedAnswer" th:id="'answer' + ${index}" th:value="${answer}">
+                                </label>
+                            </button>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
 
-      <div class="container mt-5">
-          <div th:if="${numberOfQuestions} != null" >
-              <div class="row justify-content-center">
-                  <div class="col-8 col-md-6 col-lg-4">
-                      <h2 class="rounded-pill bg-dark text-light p-3 text-center">
-                          <span th:text="${question}">What is the capital of France?</span>
-                      </h2>
-                  </div>
-              </div>
+            <div class="row justify-content-center mt-2">
+                <button type="submit" class="col-2 btn btn-success">Submit</button>
+            </div>
+            <h5 class="mt-1" style="text-align: center" th:text="${currentQuestion + '/' + numberOfQuestions}"></h5>
+        </form>
 
-          <form  th:action="@{/shared/submit-question}" method="post" class="mt-5">
-              <div class="row justify-content-center">
-                  <div class="col-8">
-                      <div class="row justify-content-center">
-                          <th:block th:each="answer, index : ${answers}">
-                              <button type="button" class="btn btn-light m-2 col-5">
-                                  <label th:for="'answer' + ${index}" class="answer-btn">
-                                      <span th:text="${answer}"></span>
-                                      <input type="radio" name="selectedAnswer" th:id="'answer' + ${index}" th:value="${answer}">
-                                  </label>
-                              </button>
-                          </th:block>
-                      </div>
-                  </div>
-              </div>
+    </div>
 
-              <div class="row justify-content-center mt-4">
-                  <div class="col d-flex justify-content-start mt-3">
-                      <div th:fragment="logout"  sec:authorize="isAuthenticated()" >
-                          <form th:action="@{/logout}" method="post" style="display:inline">
-                              <input type="submit" value="Logout" class="btn btn-danger"/>
-                          </form>
-                      </div>
-                  </div>
-                  <button type="submit" class="col-2 btn btn-success">Submit</button>
-                  <div class="col"></div>
-              </div>
+    <div th:if="${numberOfQuestions} == null">
+        <h2 class="text-danger mt-2" style="text-align: center">No Questions In DB!</h2>
+    </div>
+    <div class="row justify-content-start mt-1">
+        <div th:fragment="logout" sec:authorize="isAuthenticated()">
+            <form th:action="@{/logout}" method="post" style="display:inline">
+                <input type="submit" value="Logout" class="btn btn-danger"/>
+            </form>
+        </div>
+    </div>
 
-              <h5 class="mt-1" style="text-align: center" th:text="${currentQuestion + '/' + numberOfQuestions}"></h5>
-          </form>
-
-          </div>
-      </div>
-      <div th:if="${numberOfQuestions} == null">
-          <h2  class="text-danger mt-2" style="text-align: center">No Questions In DB!</h2>
-      </div>
-
-
-  </div>
+</div>
 
 </body>
 </html>
