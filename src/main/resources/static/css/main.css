@@ -20,6 +20,15 @@ h2{
 input[type="radio"] {
     display: none;
 }
-/*label:hover {*/
-/*    background: linear-gradient(#225588, #002255);*/
-/*}*/
+.answer-btn:hover {
+    background: linear-gradient(#09C6F9, #045DE9);
+    color: white;
+    cursor: pointer;
+}
+.answer-btn {
+    background-color: 	#C8C8C8;
+}
+
+.answer-btn.selected {
+    background-color: palegoldenrod;
+}

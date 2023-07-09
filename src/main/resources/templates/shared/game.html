@@ -25,7 +25,7 @@ padding: 0px;">
     <div th:if="${numberOfQuestions} != null">
         <div class="row justify-content-center mt-5">
             <div class="col-6" style="word-wrap: break-word;">
-                <h2 class="rounded-pill bg-dark text-light p-3" style="text-align: center; display: block;" th:text="${question}"></h2>
+                <h2 class="rounded bg-dark text-light p-3" style="text-align: center; display: block;" th:text="${question}"></h2>
             </div>
         </div>
 
@@ -36,18 +36,17 @@ padding: 0px;">
                 <div class="col-8">
                     <div class="row justify-content-center">
                         <th:block th:each="answer, index : ${answers}">
-                            <button type="button" style="background-color: #ffffd6" class="btn m-2 text-dark col-lg-5 col-sm-8 rounded-pill">
-                                <label th:for="'answer' + ${index}" class="answer-btn">
-                                    <span th:text="${answer}"></span>
-                                    <input type="radio" name="selectedAnswer" th:id="'answer' + ${index}" th:value="${answer}">
-                                </label>
-                            </button>
+                            <label th:for="'answer' + ${index}" class="answer-btn m-2 p-2 text-dark col-lg-5 col-sm-8 rounded-pill"
+                                   onclick="changeColor(this)">
+                                <span class="text-dark" th:text="${answer}"></span>
+                                <input type="radio" name="selectedAnswer" th:id="'answer' + ${index}" th:value="${answer}">
+                            </label>
                         </th:block>
                     </div>
                 </div>
             </div>
 
-            <div class="row justify-content-center mt-2">
+            <div class="row justify-content-center mt-3">
                 <button type="submit" class="col-2 btn btn-success">Submit</button>
             </div>
             <h5 class="mt-1" style="text-align: center" th:text="${currentQuestion + '/' + numberOfQuestions}"></h5>
@@ -67,6 +66,18 @@ padding: 0px;">
     </div>
 
 </div>
+<script>
+const changeColor = (label) => {
+    const labels = document.querySelectorAll(".answer-btn");
+    labels.forEach((el) => el.classList.remove("selected"));
+    label.classList.add("selected");
+};
 
+const labels = document.querySelectorAll(".answer-btn");
+    labels.forEach((label) => {
+    label.addEventListener("click", () => {
+    changeColor(label);});
+});
+</script>
 </body>
 </html>

@@ -1,6 +1,5 @@
-package hac.controllers;
+package hac;
 
-import hac.controllers.Beans.ControllerGame;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,8 +21,8 @@ public class ApplicationConfig {
 
     @Bean
     @SessionScope
-    public ControllerGame sessionBeanControllerGame () {
-        return new ControllerGame(manager);
+    public GameController sessionBeanControllerGame () {
+        return new GameController(manager);
     }
 
     @Bean
@@ -63,9 +62,7 @@ public class ApplicationConfig {
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
-//                                .loginProcessingUrl("/shared/game")
                                .defaultSuccessUrl("/shared/start-game", true)
-//                                .failureUrl("/")
                         .permitAll()
                 )
                 .logout((logout) -> logout.permitAll())
