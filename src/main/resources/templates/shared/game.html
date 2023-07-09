@@ -25,11 +25,9 @@ padding: 0px;">
     <div th:if="${numberOfQuestions} != null">
         <div class="row justify-content-center mt-5">
             <div class="col-6" style="word-wrap: break-word;">
-                <h2 class="rounded bg-dark text-light p-3" style="text-align: center; display: block;" th:text="${question}"></h2>
+                <h2 class="rounded-pill text-light p-3" style="text-align: center; display: block; background-color: #002244" th:text="${question}"></h2>
             </div>
         </div>
-
-
 
         <form th:action="@{/shared/submit-question}" method="post" class="mt-2">
             <div class="row justify-content-center">
@@ -38,7 +36,7 @@ padding: 0px;">
                         <th:block th:each="answer, index : ${answers}">
                             <label th:for="'answer' + ${index}" class="answer-btn m-2 p-2 text-dark col-lg-5 col-sm-8 rounded-pill"
                                    onclick="changeColor(this)">
-                                <span class="text-dark" th:text="${answer}"></span>
+                                <span class="text-white" style="font-weight: bold" th:text="${answer}"></span>
                                 <input type="radio" name="selectedAnswer" th:id="'answer' + ${index}" th:value="${answer}">
                             </label>
                         </th:block>

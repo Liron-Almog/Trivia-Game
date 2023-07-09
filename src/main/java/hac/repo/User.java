@@ -12,10 +12,9 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     @NotEmpty(message = "First name is mandatory")
     private String userName;
-
-
 
     @Length(message = "The password needs to be 4-10 chars", min = 4, max = 10)
     private String password;

@@ -1,6 +1,6 @@
 ## Authors
-* Name:  Email:
-* Name:  Email:
+* Name:Liron Almog  Email: lironal@edu.hac.ac.il
+* Name:Talia Ezekiel  Email:taliaez@edu.hac.ac.il
 
 ## Description
 

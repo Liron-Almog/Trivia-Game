@@ -26,9 +26,9 @@ input[type="radio"] {
     cursor: pointer;
 }
 .answer-btn {
-    background-color: 	#C8C8C8;
+    background-color: 	#00308F;
 }
 
 .answer-btn.selected {
-    background-color: palegoldenrod;
+    background: linear-gradient(#09C6F9, #045DE9);
 }
