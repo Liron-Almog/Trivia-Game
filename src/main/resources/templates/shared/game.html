@@ -18,14 +18,14 @@ padding: 0px;">
         </div>
     </div>
 
-    <div class="row justify-content-center mt-2">
+    <div class="row justify-content-center mt-1">
         <img class="img-fluid" th:src="@{/images/title1.png}" style="max-width: 300px;">
     </div>
 
     <div th:if="${numberOfQuestions} != null">
-        <div class="row justify-content-center mt-5">
+        <div class="row justify-content-center mt-3">
             <div class="col-6" style="word-wrap: break-word;">
-                <h2 class="rounded-pill text-light p-3" style="text-align: center; display: block; background-color: #002244" th:text="${question}"></h2>
+                <h5 class="rounded-pill text-light p-3" style="text-align: center; display: block; background-color: #002244" th:text="${question}"></h5>
             </div>
         </div>
 
@@ -55,7 +55,7 @@ padding: 0px;">
     <div th:if="${numberOfQuestions} == null">
         <h2 class="text-danger mt-2" style="text-align: center">No Questions In DB!</h2>
     </div>
-    <div class="row justify-content-start mt-1">
+    <div class="row justify-content-start">
         <div th:fragment="logout" sec:authorize="isAuthenticated()">
             <form th:action="@{/logout}" method="post" style="display:inline">
                 <input type="submit" value="Logout" class="btn btn-danger"/>
