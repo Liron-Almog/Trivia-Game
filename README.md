@@ -1,4 +1,8 @@
 
+## video
+https://github.com/Liron-Almog/Trivia-Game/assets/100926289/44bcb214-f8ca-499d-8d9c-8b41e10afa7c
+
+
 ## Description
 
 I have created a trivia game. The goal of the player is to answer as
